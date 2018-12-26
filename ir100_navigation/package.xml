@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+  <name>ir100_navigation</name>
+  <version>1.0.0</version>
+  <description>
+    The ir100_navigation provides roslaunch scripts for starting the navigation.
+  </description>
+
+  <author email="shansu@sensorobots.net">shansu</author>
+  <maintainer email="shansu@sensorobots.net">shansu</maintainer>
+  <url type="repository">https://github.com/ShanSuIntelligent</url>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>amcl</run_depend>
+  <run_depend>map_server</run_depend>
+  <run_depend>move_base</run_depend>
+</package>

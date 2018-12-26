@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<launch>
+
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find ir100_description)/urdf/ir100_robot.xacro'" />
+
+  <node pkg="ir100_driver" type="ir100_node" name="ir100_driver" output="screen" >
+    <param name="controller_port" value="/dev/motor" />
+    <param name="bms_port" value="/dev/bms" />
+  </node>
+
+  <rosparam command="load" file="$(find ir100_driver)/config/control.yaml" />
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" args="ir100_joint_publisher ir100_velocity_controller --shutdown-timeout 1" output="screen" />
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
+    <rosparam command="load" file="$(find ir100_driver)/config/localization.yaml" />
+  </node>
+
+  <node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator">
+    <rosparam command="load" file="$(find ir100_driver)/config/diagnostics.yaml"/>
+  </node>
+  <node pkg="ir100_driver" type="imu_node" name="ir100_imu" output="screen" >
+    <param name="uid" value="6xEFcW" />
+  </node>
+
+  <node pkg="ir100_driver" type="light_demo" name="ir100_light" output="screen" >
+    <param name="uid" value="FTA" />
+  </node>
+
+  <!--node pkg="ir100_driver" type="sonar_demo" name="ir100_sonar" output="screen" >
+    <param name="left_uid" value="Egy" />
+    <param name="right_uid" value="Efn" />
+  </node-->
+  <include file="$(find ir100_driver)/launch/teleop.launch"/>
+  <include file="$(find ir100_driver)/launch/laser.launch"/>
+  <include file="$(find openni2_launch)/launch/openni2.launch"/>
+
+</launch>

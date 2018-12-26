@@ -1,0 +1,16 @@
+pub_rate: 1.0 
+base_path: ''
+analyzers:
+  power:
+    type: diagnostic_aggregator/GenericAnalyzer
+    path: 'Power System'
+    remove_prefix: 'ir100_driver: '
+    contains: ['Battery']
+    timeout: 5.0
+  ir100:
+    type: diagnostic_aggregator/GenericAnalyzer
+    path: 'IR100 Robot'
+    remove_prefix: 'ir100_driver: '
+    timeout: 5.0
+    contains: ['Motor', 'Robot', 'Controller']
+
