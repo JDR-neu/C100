@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-02-28.      *
+ * This file was automatically generated on 2018-11-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.19                             *
+ * C/C++ Bindings Version 2.1.23                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -55,8 +55,8 @@ typedef struct {
 	uint32_t period;
 	uint8_t value_has_to_change;
 	char option;
-	uint16_t min;
-	uint16_t max;
+	int16_t min;
+	int16_t max;
 } ATTRIBUTE_PACKED SetAmbientTemperatureCallbackConfiguration_Request;
 
 typedef struct {
@@ -68,8 +68,8 @@ typedef struct {
 	uint32_t period;
 	uint8_t value_has_to_change;
 	char option;
-	uint16_t min;
-	uint16_t max;
+	int16_t min;
+	int16_t max;
 } ATTRIBUTE_PACKED GetAmbientTemperatureCallbackConfiguration_Response;
 
 typedef struct {
@@ -91,8 +91,8 @@ typedef struct {
 	uint32_t period;
 	uint8_t value_has_to_change;
 	char option;
-	uint16_t min;
-	uint16_t max;
+	int16_t min;
+	int16_t max;
 } ATTRIBUTE_PACKED SetObjectTemperatureCallbackConfiguration_Request;
 
 typedef struct {
@@ -104,8 +104,8 @@ typedef struct {
 	uint32_t period;
 	uint8_t value_has_to_change;
 	char option;
-	uint16_t min;
-	uint16_t max;
+	int16_t min;
+	int16_t max;
 } ATTRIBUTE_PACKED GetObjectTemperatureCallbackConfiguration_Response;
 
 typedef struct {
@@ -268,7 +268,7 @@ static void temperature_ir_v2_callback_wrapper_object_temperature(DevicePrivate 
 void temperature_ir_v2_create(TemperatureIRV2 *temperature_ir_v2, const char *uid, IPConnection *ipcon) {
 	DevicePrivate *device_p;
 
-	device_create(temperature_ir_v2, uid, ipcon->p, 2, 0, 0);
+	device_create(temperature_ir_v2, uid, ipcon->p, 2, 0, 1);
 
 	device_p = temperature_ir_v2->p;
 
@@ -345,7 +345,7 @@ int temperature_ir_v2_get_ambient_temperature(TemperatureIRV2 *temperature_ir_v2
 	return ret;
 }
 
-int temperature_ir_v2_set_ambient_temperature_callback_configuration(TemperatureIRV2 *temperature_ir_v2, uint32_t period, bool value_has_to_change, char option, uint16_t min, uint16_t max) {
+int temperature_ir_v2_set_ambient_temperature_callback_configuration(TemperatureIRV2 *temperature_ir_v2, uint32_t period, bool value_has_to_change, char option, int16_t min, int16_t max) {
 	DevicePrivate *device_p = temperature_ir_v2->p;
 	SetAmbientTemperatureCallbackConfiguration_Request request;
 	int ret;
@@ -359,15 +359,15 @@ int temperature_ir_v2_set_ambient_temperature_callback_configuration(Temperature
 	request.period = leconvert_uint32_to(period);
 	request.value_has_to_change = value_has_to_change ? 1 : 0;
 	request.option = option;
-	request.min = leconvert_uint16_to(min);
-	request.max = leconvert_uint16_to(max);
+	request.min = leconvert_int16_to(min);
+	request.max = leconvert_int16_to(max);
 
 	ret = device_send_request(device_p, (Packet *)&request, NULL);
 
 	return ret;
 }
 
-int temperature_ir_v2_get_ambient_temperature_callback_configuration(TemperatureIRV2 *temperature_ir_v2, uint32_t *ret_period, bool *ret_value_has_to_change, char *ret_option, uint16_t *ret_min, uint16_t *ret_max) {
+int temperature_ir_v2_get_ambient_temperature_callback_configuration(TemperatureIRV2 *temperature_ir_v2, uint32_t *ret_period, bool *ret_value_has_to_change, char *ret_option, int16_t *ret_min, int16_t *ret_max) {
 	DevicePrivate *device_p = temperature_ir_v2->p;
 	GetAmbientTemperatureCallbackConfiguration_Request request;
 	GetAmbientTemperatureCallbackConfiguration_Response response;
@@ -388,8 +388,8 @@ int temperature_ir_v2_get_ambient_temperature_callback_configuration(Temperature
 	*ret_period = leconvert_uint32_from(response.period);
 	*ret_value_has_to_change = response.value_has_to_change != 0;
 	*ret_option = response.option;
-	*ret_min = leconvert_uint16_from(response.min);
-	*ret_max = leconvert_uint16_from(response.max);
+	*ret_min = leconvert_int16_from(response.min);
+	*ret_max = leconvert_int16_from(response.max);
 
 	return ret;
 }
@@ -417,7 +417,7 @@ int temperature_ir_v2_get_object_temperature(TemperatureIRV2 *temperature_ir_v2,
 	return ret;
 }
 
-int temperature_ir_v2_set_object_temperature_callback_configuration(TemperatureIRV2 *temperature_ir_v2, uint32_t period, bool value_has_to_change, char option, uint16_t min, uint16_t max) {
+int temperature_ir_v2_set_object_temperature_callback_configuration(TemperatureIRV2 *temperature_ir_v2, uint32_t period, bool value_has_to_change, char option, int16_t min, int16_t max) {
 	DevicePrivate *device_p = temperature_ir_v2->p;
 	SetObjectTemperatureCallbackConfiguration_Request request;
 	int ret;
@@ -431,15 +431,15 @@ int temperature_ir_v2_set_object_temperature_callback_configuration(TemperatureI
 	request.period = leconvert_uint32_to(period);
 	request.value_has_to_change = value_has_to_change ? 1 : 0;
 	request.option = option;
-	request.min = leconvert_uint16_to(min);
-	request.max = leconvert_uint16_to(max);
+	request.min = leconvert_int16_to(min);
+	request.max = leconvert_int16_to(max);
 
 	ret = device_send_request(device_p, (Packet *)&request, NULL);
 
 	return ret;
 }
 
-int temperature_ir_v2_get_object_temperature_callback_configuration(TemperatureIRV2 *temperature_ir_v2, uint32_t *ret_period, bool *ret_value_has_to_change, char *ret_option, uint16_t *ret_min, uint16_t *ret_max) {
+int temperature_ir_v2_get_object_temperature_callback_configuration(TemperatureIRV2 *temperature_ir_v2, uint32_t *ret_period, bool *ret_value_has_to_change, char *ret_option, int16_t *ret_min, int16_t *ret_max) {
 	DevicePrivate *device_p = temperature_ir_v2->p;
 	GetObjectTemperatureCallbackConfiguration_Request request;
 	GetObjectTemperatureCallbackConfiguration_Response response;
@@ -460,8 +460,8 @@ int temperature_ir_v2_get_object_temperature_callback_configuration(TemperatureI
 	*ret_period = leconvert_uint32_from(response.period);
 	*ret_value_has_to_change = response.value_has_to_change != 0;
 	*ret_option = response.option;
-	*ret_min = leconvert_uint16_from(response.min);
-	*ret_max = leconvert_uint16_from(response.max);
+	*ret_min = leconvert_int16_from(response.min);
+	*ret_max = leconvert_int16_from(response.max);
 
 	return ret;
 }

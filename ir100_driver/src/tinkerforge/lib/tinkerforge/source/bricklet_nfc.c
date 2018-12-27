@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-02-28.      *
+ * This file was automatically generated on 2018-11-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.19                             *
+ * C/C++ Bindings Version 2.1.23                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -233,6 +233,20 @@ typedef struct {
 
 typedef struct {
 	PacketHeader header;
+	uint16_t timeout;
+} ATTRIBUTE_PACKED SetMaximumTimeout_Request;
+
+typedef struct {
+	PacketHeader header;
+} ATTRIBUTE_PACKED GetMaximumTimeout_Request;
+
+typedef struct {
+	PacketHeader header;
+	uint16_t timeout;
+} ATTRIBUTE_PACKED GetMaximumTimeout_Response;
+
+typedef struct {
+	PacketHeader header;
 } ATTRIBUTE_PACKED GetSPITFPErrorCount_Request;
 
 typedef struct {
@@ -388,7 +402,7 @@ static void nfc_callback_wrapper_p2p_state_changed(DevicePrivate *device_p, Pack
 void nfc_create(NFC *nfc, const char *uid, IPConnection *ipcon) {
 	DevicePrivate *device_p;
 
-	device_create(nfc, uid, ipcon->p, 2, 0, 0);
+	device_create(nfc, uid, ipcon->p, 2, 0, 1);
 
 	device_p = nfc->p;
 
@@ -415,6 +429,8 @@ void nfc_create(NFC *nfc, const char *uid, IPConnection *ipcon) {
 	device_p->response_expected[NFC_FUNCTION_P2P_READ_NDEF_LOW_LEVEL] = DEVICE_RESPONSE_EXPECTED_ALWAYS_TRUE;
 	device_p->response_expected[NFC_FUNCTION_SET_DETECTION_LED_CONFIG] = DEVICE_RESPONSE_EXPECTED_FALSE;
 	device_p->response_expected[NFC_FUNCTION_GET_DETECTION_LED_CONFIG] = DEVICE_RESPONSE_EXPECTED_ALWAYS_TRUE;
+	device_p->response_expected[NFC_FUNCTION_SET_MAXIMUM_TIMEOUT] = DEVICE_RESPONSE_EXPECTED_FALSE;
+	device_p->response_expected[NFC_FUNCTION_GET_MAXIMUM_TIMEOUT] = DEVICE_RESPONSE_EXPECTED_ALWAYS_TRUE;
 	device_p->response_expected[NFC_FUNCTION_GET_SPITFP_ERROR_COUNT] = DEVICE_RESPONSE_EXPECTED_ALWAYS_TRUE;
 	device_p->response_expected[NFC_FUNCTION_SET_BOOTLOADER_MODE] = DEVICE_RESPONSE_EXPECTED_ALWAYS_TRUE;
 	device_p->response_expected[NFC_FUNCTION_GET_BOOTLOADER_MODE] = DEVICE_RESPONSE_EXPECTED_ALWAYS_TRUE;
@@ -928,6 +944,47 @@ int nfc_get_detection_led_config(NFC *nfc, uint8_t *ret_config) {
 	}
 
 	*ret_config = response.config;
+
+	return ret;
+}
+
+int nfc_set_maximum_timeout(NFC *nfc, uint16_t timeout) {
+	DevicePrivate *device_p = nfc->p;
+	SetMaximumTimeout_Request request;
+	int ret;
+
+	ret = packet_header_create(&request.header, sizeof(request), NFC_FUNCTION_SET_MAXIMUM_TIMEOUT, device_p->ipcon_p, device_p);
+
+	if (ret < 0) {
+		return ret;
+	}
+
+	request.timeout = leconvert_uint16_to(timeout);
+
+	ret = device_send_request(device_p, (Packet *)&request, NULL);
+
+	return ret;
+}
+
+int nfc_get_maximum_timeout(NFC *nfc, uint16_t *ret_timeout) {
+	DevicePrivate *device_p = nfc->p;
+	GetMaximumTimeout_Request request;
+	GetMaximumTimeout_Response response;
+	int ret;
+
+	ret = packet_header_create(&request.header, sizeof(request), NFC_FUNCTION_GET_MAXIMUM_TIMEOUT, device_p->ipcon_p, device_p);
+
+	if (ret < 0) {
+		return ret;
+	}
+
+	ret = device_send_request(device_p, (Packet *)&request, (Packet *)&response);
+
+	if (ret < 0) {
+		return ret;
+	}
+
+	*ret_timeout = leconvert_uint16_from(response.timeout);
 
 	return ret;
 }

@@ -1,11 +1,11 @@
 #include <stdio.h>
 
-#include <tinkerforge/brick_imu_v2.h>
-#include <tinkerforge/bricklet_io16.h>
+#include "ip_connection.h"
+#include "bricklet_io16.h"
 
 #define HOST "localhost"
 #define PORT 4223
-#define UID "D89" // Change XYZ to the UID of your IO-16 Bricklet
+#define UID "XYZ" // Change XYZ to the UID of your IO-16 Bricklet
 
 // Callback function for interrupt callback
 void cb_interrupt(char port, uint8_t interrupt_mask, uint8_t value_mask,
@@ -41,7 +41,7 @@ int main(void) {
 	                       NULL);
 
 	// Enable interrupt on pin 2 of port A
-	io16_set_port_interrupt(&io, 'a', 1 << 0);
+	io16_set_port_interrupt(&io, 'a', 1 << 2);
 
 	printf("Press key to exit\n");
 	getchar();

@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-02-28.      *
+ * This file was automatically generated on 2018-11-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.19                             *
+ * C/C++ Bindings Version 2.1.23                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -129,9 +129,9 @@ typedef Device AnalogInV3;
  * Signature: \code void callback(uint16_t voltage, void *user_data) \endcode
  * 
  * This callback is triggered periodically according to the configuration set by
- * {@link analog_in_v3_set_voltage_callback_configuration}. 
+ * {@link analog_in_v3_set_voltage_callback_configuration}.
  * 
- * The `parameter` is the same as {@link analog_in_v3_get_voltage}.
+ * The parameter is the same as {@link analog_in_v3_get_voltage}.
  */
 #define ANALOG_IN_V3_CALLBACK_VOLTAGE 4
 
@@ -419,11 +419,10 @@ int analog_in_v3_get_voltage(AnalogInV3 *analog_in_v3, uint16_t *ret_voltage);
  * 
  *  "'x'",    "Threshold is turned off"
  *  "'o'",    "Threshold is triggered when the value is *outside* the min and max values"
- *  "'i'",    "Threshold is triggered when the value is *inside* the min and max values"
+ *  "'i'",    "Threshold is triggered when the value is *inside* or equal to the min and max values"
  *  "'<'",    "Threshold is triggered when the value is smaller than the min value (max is ignored)"
  *  "'>'",    "Threshold is triggered when the value is greater than the min value (max is ignored)"
  * \endverbatim
- * 
  * 
  * If the option is set to 'x' (threshold turned off) the callback is triggered with the fixed period.
  * 
@@ -493,9 +492,9 @@ int analog_in_v3_get_calibration(AnalogInV3 *analog_in_v3, int16_t *ret_offset, 
  * 
  * The errors are divided into
  * 
- * * ack checksum errors,
+ * * ACK checksum errors,
  * * message checksum errors,
- * * frameing errors and
+ * * framing errors and
  * * overflow errors.
  * 
  * The errors counts are for errors that occur on the Bricklet side. All
@@ -511,7 +510,7 @@ int analog_in_v3_get_spitfp_error_count(AnalogInV3 *analog_in_v3, uint32_t *ret_
  * 
  * You can change from bootloader mode to firmware mode and vice versa. A change
  * from bootloader mode to firmware mode will only take place if the entry function,
- * device identifier und crc are present and correct.
+ * device identifier and CRC are present and correct.
  * 
  * This function is used by Brick Viewer during flashing. It should not be
  * necessary to call it in a normal user program.

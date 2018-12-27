@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-02-28.      *
+ * This file was automatically generated on 2018-11-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.19                             *
+ * C/C++ Bindings Version 2.1.23                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -142,6 +142,16 @@ typedef Device NFC;
  * \ingroup BrickletNFC
  */
 #define NFC_FUNCTION_GET_DETECTION_LED_CONFIG 26
+
+/**
+ * \ingroup BrickletNFC
+ */
+#define NFC_FUNCTION_SET_MAXIMUM_TIMEOUT 27
+
+/**
+ * \ingroup BrickletNFC
+ */
+#define NFC_FUNCTION_GET_MAXIMUM_TIMEOUT 28
 
 /**
  * \ingroup BrickletNFC
@@ -938,7 +948,7 @@ int nfc_reader_write_page_low_level(NFC *nfc, uint16_t page, uint16_t data_lengt
  * 
  * * Mifare Classic page size: 16 byte
  * * NFC Forum Type 1 page size: 8 byte
- * * NFC Forum Type 2 page size: 4 byte 
+ * * NFC Forum Type 2 page size: 4 byte
  * * NFC Forum Type 3 page size: 16 byte
  * * NFC Forum Type 4: No pages, page = file selection (CC or NDEF, see below)
  * 
@@ -1141,13 +1151,49 @@ int nfc_get_detection_led_config(NFC *nfc, uint8_t *ret_config);
 /**
  * \ingroup BrickletNFC
  *
+ * Sets the maximum timeout in ms.
+ * 
+ * This is a global maximum used for all internal state timeouts. The timeouts depend heavily
+ * on the used tags etc. For example: If you use a Type 2 tag and you want to detect if
+ * it is present, you have to use {@link nfc_reader_request_tag_id} and wait for the state
+ * to change to either the error state or the ready state.
+ * 
+ * With the default configuration this takes 2-3 seconds. By setting the maximum timeout to
+ * 100ms you can reduce this time to ~150-200ms. For Type 2 this would also still work
+ * with a 20ms timeout (a Type 2 tag answers usually within 10ms). A type 4 tag can take
+ * up to 500ms in our tests.
+ * 
+ * If you need a fast response time to discover if a tag is present or not you can find
+ * a good timeout value by trial and error for your specific tag.
+ * 
+ * By default we use a very conservative timeout, to be sure that any Tag can always
+ * answer in time.
+ * 
+ * Default timeout: 2000ms.
+ * 
+ * .. versionadded:: 2.0.1$nbsp;(Plugin)
+ */
+int nfc_set_maximum_timeout(NFC *nfc, uint16_t timeout);
+
+/**
+ * \ingroup BrickletNFC
+ *
+ * Returns the timeout as set by {@link nfc_set_maximum_timeout}
+ * 
+ * .. versionadded:: 2.0.1$nbsp;(Plugin)
+ */
+int nfc_get_maximum_timeout(NFC *nfc, uint16_t *ret_timeout);
+
+/**
+ * \ingroup BrickletNFC
+ *
  * Returns the error count for the communication between Brick and Bricklet.
  * 
  * The errors are divided into
  * 
- * * ack checksum errors,
+ * * ACK checksum errors,
  * * message checksum errors,
- * * frameing errors and
+ * * framing errors and
  * * overflow errors.
  * 
  * The errors counts are for errors that occur on the Bricklet side. All
@@ -1163,7 +1209,7 @@ int nfc_get_spitfp_error_count(NFC *nfc, uint32_t *ret_error_count_ack_checksum,
  * 
  * You can change from bootloader mode to firmware mode and vice versa. A change
  * from bootloader mode to firmware mode will only take place if the entry function,
- * device identifier und crc are present and correct.
+ * device identifier and CRC are present and correct.
  * 
  * This function is used by Brick Viewer during flashing. It should not be
  * necessary to call it in a normal user program.

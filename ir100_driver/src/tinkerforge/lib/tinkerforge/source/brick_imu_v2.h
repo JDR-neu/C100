@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-02-28.      *
+ * This file was automatically generated on 2018-11-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.19                             *
+ * C/C++ Bindings Version 2.1.23                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -552,6 +552,11 @@ typedef Device IMUV2;
 /**
  * \ingroup BrickIMUV2
  */
+#define IMU_V2_SENSOR_FUSION_ON_WITHOUT_FAST_MAGNETOMETER_CALIBRATION 3
+
+/**
+ * \ingroup BrickIMUV2
+ */
 #define IMU_V2_COMMUNICATION_METHOD_NONE 0
 
 /**
@@ -1052,6 +1057,12 @@ int imu_v2_get_sensor_configuration(IMUV2 *imu_v2, uint8_t *ret_magnetometer_rat
  * absolute with respect to the earth). However, the calculation can't be influenced
  * by spurious magnetic fields.
  * 
+ * Since firmware version 2.0.13 you can also use a fusion mode without fast
+ * magnetometer calibration. This mode is the same as the normal fusion mode,
+ * but the fast magnetometer calibration is turned off. So to find the orientation
+ * the first time will likely take longer, but small magnetic influences might
+ * not affect the automatic calibration as much.
+ * 
  * By default sensor fusion is on.
  * 
  * .. versionadded:: 2.0.5$nbsp;(Firmware)
@@ -1074,7 +1085,7 @@ int imu_v2_get_sensor_fusion_mode(IMUV2 *imu_v2, uint8_t *ret_mode);
  * enabled, the Brick will try to adapt the baudrate for the communication
  * between Bricks and Bricklets according to the amount of data that is transferred.
  * 
- * The baudrate will be increased exponetially if lots of data is send/receieved and
+ * The baudrate will be increased exponentially if lots of data is send/received and
  * decreased linearly if little data is send/received.
  * 
  * This lowers the baudrate in applications where little data is transferred (e.g.
@@ -1085,7 +1096,7 @@ int imu_v2_get_sensor_fusion_mode(IMUV2 *imu_v2, uint8_t *ret_mode);
  * (e.g. RS485 Bricklet with a high baudrate but small payload) you may want to turn
  * the dynamic baudrate off to get the highest possible performance.
  * 
- * The maximum value of the baudrate can be set per port with the function 
+ * The maximum value of the baudrate can be set per port with the function
  * {@link imu_v2_set_spitfp_baudrate}. If the dynamic baudrate is disabled, the baudrate
  * as set by {@link imu_v2_set_spitfp_baudrate} will be used statically.
  * 
@@ -1134,7 +1145,7 @@ int imu_v2_get_send_timeout_count(IMUV2 *imu_v2, uint8_t communication_method, u
  * If the dynamic baudrate feature is enabled, the baudrate set by this
  * function corresponds to the maximum baudrate (see {@link imu_v2_set_spitfp_baudrate_config}).
  * 
- * Regulatory testing is done with the default baudrate. If CE compatability
+ * Regulatory testing is done with the default baudrate. If CE compatibility
  * or similar is necessary in you applications we recommend to not change
  * the baudrate.
  * 
@@ -1162,7 +1173,7 @@ int imu_v2_get_spitfp_baudrate(IMUV2 *imu_v2, char bricklet_port, uint32_t *ret_
  * 
  * * ACK checksum errors,
  * * message checksum errors,
- * * frameing errors and
+ * * framing errors and
  * * overflow errors.
  * 
  * The errors counts are for errors that occur on the Brick side. All

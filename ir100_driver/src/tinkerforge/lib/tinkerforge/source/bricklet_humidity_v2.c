@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-02-28.      *
+ * This file was automatically generated on 2018-11-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.19                             *
+ * C/C++ Bindings Version 2.1.23                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -91,8 +91,8 @@ typedef struct {
 	uint32_t period;
 	uint8_t value_has_to_change;
 	char option;
-	uint16_t min;
-	uint16_t max;
+	int16_t min;
+	int16_t max;
 } ATTRIBUTE_PACKED SetTemperatureCallbackConfiguration_Request;
 
 typedef struct {
@@ -104,8 +104,8 @@ typedef struct {
 	uint32_t period;
 	uint8_t value_has_to_change;
 	char option;
-	uint16_t min;
-	uint16_t max;
+	int16_t min;
+	int16_t max;
 } ATTRIBUTE_PACKED GetTemperatureCallbackConfiguration_Response;
 
 typedef struct {
@@ -142,6 +142,20 @@ typedef struct {
 	uint16_t moving_average_length_humidity;
 	uint16_t moving_average_length_temperature;
 } ATTRIBUTE_PACKED GetMovingAverageConfiguration_Response;
+
+typedef struct {
+	PacketHeader header;
+	uint8_t sps;
+} ATTRIBUTE_PACKED SetSamplesPerSecond_Request;
+
+typedef struct {
+	PacketHeader header;
+} ATTRIBUTE_PACKED GetSamplesPerSecond_Request;
+
+typedef struct {
+	PacketHeader header;
+	uint8_t sps;
+} ATTRIBUTE_PACKED GetSamplesPerSecond_Response;
 
 typedef struct {
 	PacketHeader header;
@@ -284,7 +298,7 @@ static void humidity_v2_callback_wrapper_temperature(DevicePrivate *device_p, Pa
 void humidity_v2_create(HumidityV2 *humidity_v2, const char *uid, IPConnection *ipcon) {
 	DevicePrivate *device_p;
 
-	device_create(humidity_v2, uid, ipcon->p, 2, 0, 0);
+	device_create(humidity_v2, uid, ipcon->p, 2, 0, 2);
 
 	device_p = humidity_v2->p;
 
@@ -298,6 +312,8 @@ void humidity_v2_create(HumidityV2 *humidity_v2, const char *uid, IPConnection *
 	device_p->response_expected[HUMIDITY_V2_FUNCTION_GET_HEATER_CONFIGURATION] = DEVICE_RESPONSE_EXPECTED_ALWAYS_TRUE;
 	device_p->response_expected[HUMIDITY_V2_FUNCTION_SET_MOVING_AVERAGE_CONFIGURATION] = DEVICE_RESPONSE_EXPECTED_FALSE;
 	device_p->response_expected[HUMIDITY_V2_FUNCTION_GET_MOVING_AVERAGE_CONFIGURATION] = DEVICE_RESPONSE_EXPECTED_ALWAYS_TRUE;
+	device_p->response_expected[HUMIDITY_V2_FUNCTION_SET_SAMPLES_PER_SECOND] = DEVICE_RESPONSE_EXPECTED_FALSE;
+	device_p->response_expected[HUMIDITY_V2_FUNCTION_GET_SAMPLES_PER_SECOND] = DEVICE_RESPONSE_EXPECTED_ALWAYS_TRUE;
 	device_p->response_expected[HUMIDITY_V2_FUNCTION_GET_SPITFP_ERROR_COUNT] = DEVICE_RESPONSE_EXPECTED_ALWAYS_TRUE;
 	device_p->response_expected[HUMIDITY_V2_FUNCTION_SET_BOOTLOADER_MODE] = DEVICE_RESPONSE_EXPECTED_ALWAYS_TRUE;
 	device_p->response_expected[HUMIDITY_V2_FUNCTION_GET_BOOTLOADER_MODE] = DEVICE_RESPONSE_EXPECTED_ALWAYS_TRUE;
@@ -435,7 +451,7 @@ int humidity_v2_get_temperature(HumidityV2 *humidity_v2, int16_t *ret_temperatur
 	return ret;
 }
 
-int humidity_v2_set_temperature_callback_configuration(HumidityV2 *humidity_v2, uint32_t period, bool value_has_to_change, char option, uint16_t min, uint16_t max) {
+int humidity_v2_set_temperature_callback_configuration(HumidityV2 *humidity_v2, uint32_t period, bool value_has_to_change, char option, int16_t min, int16_t max) {
 	DevicePrivate *device_p = humidity_v2->p;
 	SetTemperatureCallbackConfiguration_Request request;
 	int ret;
@@ -449,15 +465,15 @@ int humidity_v2_set_temperature_callback_configuration(HumidityV2 *humidity_v2, 
 	request.period = leconvert_uint32_to(period);
 	request.value_has_to_change = value_has_to_change ? 1 : 0;
 	request.option = option;
-	request.min = leconvert_uint16_to(min);
-	request.max = leconvert_uint16_to(max);
+	request.min = leconvert_int16_to(min);
+	request.max = leconvert_int16_to(max);
 
 	ret = device_send_request(device_p, (Packet *)&request, NULL);
 
 	return ret;
 }
 
-int humidity_v2_get_temperature_callback_configuration(HumidityV2 *humidity_v2, uint32_t *ret_period, bool *ret_value_has_to_change, char *ret_option, uint16_t *ret_min, uint16_t *ret_max) {
+int humidity_v2_get_temperature_callback_configuration(HumidityV2 *humidity_v2, uint32_t *ret_period, bool *ret_value_has_to_change, char *ret_option, int16_t *ret_min, int16_t *ret_max) {
 	DevicePrivate *device_p = humidity_v2->p;
 	GetTemperatureCallbackConfiguration_Request request;
 	GetTemperatureCallbackConfiguration_Response response;
@@ -478,8 +494,8 @@ int humidity_v2_get_temperature_callback_configuration(HumidityV2 *humidity_v2, 
 	*ret_period = leconvert_uint32_from(response.period);
 	*ret_value_has_to_change = response.value_has_to_change != 0;
 	*ret_option = response.option;
-	*ret_min = leconvert_uint16_from(response.min);
-	*ret_max = leconvert_uint16_from(response.max);
+	*ret_min = leconvert_int16_from(response.min);
+	*ret_max = leconvert_int16_from(response.max);
 
 	return ret;
 }
@@ -564,6 +580,47 @@ int humidity_v2_get_moving_average_configuration(HumidityV2 *humidity_v2, uint16
 
 	*ret_moving_average_length_humidity = leconvert_uint16_from(response.moving_average_length_humidity);
 	*ret_moving_average_length_temperature = leconvert_uint16_from(response.moving_average_length_temperature);
+
+	return ret;
+}
+
+int humidity_v2_set_samples_per_second(HumidityV2 *humidity_v2, uint8_t sps) {
+	DevicePrivate *device_p = humidity_v2->p;
+	SetSamplesPerSecond_Request request;
+	int ret;
+
+	ret = packet_header_create(&request.header, sizeof(request), HUMIDITY_V2_FUNCTION_SET_SAMPLES_PER_SECOND, device_p->ipcon_p, device_p);
+
+	if (ret < 0) {
+		return ret;
+	}
+
+	request.sps = sps;
+
+	ret = device_send_request(device_p, (Packet *)&request, NULL);
+
+	return ret;
+}
+
+int humidity_v2_get_samples_per_second(HumidityV2 *humidity_v2, uint8_t *ret_sps) {
+	DevicePrivate *device_p = humidity_v2->p;
+	GetSamplesPerSecond_Request request;
+	GetSamplesPerSecond_Response response;
+	int ret;
+
+	ret = packet_header_create(&request.header, sizeof(request), HUMIDITY_V2_FUNCTION_GET_SAMPLES_PER_SECOND, device_p->ipcon_p, device_p);
+
+	if (ret < 0) {
+		return ret;
+	}
+
+	ret = device_send_request(device_p, (Packet *)&request, (Packet *)&response);
+
+	if (ret < 0) {
+		return ret;
+	}
+
+	*ret_sps = response.sps;
 
 	return ret;
 }

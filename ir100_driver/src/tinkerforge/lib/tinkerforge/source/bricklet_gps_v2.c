@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-02-28.      *
+ * This file was automatically generated on 2018-11-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.19                             *
+ * C/C++ Bindings Version 2.1.23                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -475,7 +475,7 @@ static void gps_v2_callback_wrapper_date_time(DevicePrivate *device_p, Packet *p
 void gps_v2_create(GPSV2 *gps_v2, const char *uid, IPConnection *ipcon) {
 	DevicePrivate *device_p;
 
-	device_create(gps_v2, uid, ipcon->p, 2, 0, 0);
+	device_create(gps_v2, uid, ipcon->p, 2, 0, 1);
 
 	device_p = gps_v2->p;
 

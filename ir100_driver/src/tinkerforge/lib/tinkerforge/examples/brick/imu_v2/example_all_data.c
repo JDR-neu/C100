@@ -1,15 +1,12 @@
 #include <stdio.h>
 
-#include <tinkerforge/ip_connection.h>
-#include <tinkerforge/brick_imu_v2.h>
-
+#include "ip_connection.h"
+#include "brick_imu_v2.h"
 
 #define HOST "localhost"
 #define PORT 4223
-#define UID "6euhcj" // Change XXYYZZ to the UID of your IMU Brick 2.0
+#define UID "XXYYZZ" // Change XXYYZZ to the UID of your IMU Brick 2.0
 
-
-double AngleX=0.0,AngleY=0.0,AngleZ=0.0;
 // Callback function for all data callback
 void cb_all_data(int16_t acceleration[3], int16_t magnetic_field[3],
                  int16_t angular_velocity[3], int16_t euler_angle[3],
@@ -17,26 +14,17 @@ void cb_all_data(int16_t acceleration[3], int16_t magnetic_field[3],
                  int16_t gravity_vector[3], int8_t temperature,
                  uint8_t calibration_status, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
-	AngleX += (angular_velocity[0]/16.0)*(0.05);
-	AngleY += (angular_velocity[1]/16.0)*(0.05);
-	AngleZ += (angular_velocity[2]/16.0)*(0.05);
-
 
 	printf("Acceleration [X]: %f m/s²\n", acceleration[0]/100.0);
 	printf("Acceleration [Y]: %f m/s²\n", acceleration[1]/100.0);
 	printf("Acceleration [Z]: %f m/s²\n", acceleration[2]/100.0);
-	/*printf("Magnetic Field [X]: %f µT\n", magnetic_field[0]/16.0);
+	printf("Magnetic Field [X]: %f µT\n", magnetic_field[0]/16.0);
 	printf("Magnetic Field [Y]: %f µT\n", magnetic_field[1]/16.0);
-	printf("Magnetic Field [Z]: %f µT\n", magnetic_field[2]/16.0);*/
+	printf("Magnetic Field [Z]: %f µT\n", magnetic_field[2]/16.0);
 	printf("Angular Velocity [X]: %f °/s\n", angular_velocity[0]/16.0);
 	printf("Angular Velocity [Y]: %f °/s\n", angular_velocity[1]/16.0);
 	printf("Angular Velocity [Z]: %f °/s\n", angular_velocity[2]/16.0);
-	
-	printf("Angle [X]: %f °\n", AngleX);
-	printf("Angle [Y]: %f °\n", AngleY);
-	printf("Angle [Z]: %f °\n", AngleZ);
-
-	/*printf("Euler Angle [X]: %f °\n", euler_angle[0]/16.0);
+	printf("Euler Angle [X]: %f °\n", euler_angle[0]/16.0);
 	printf("Euler Angle [Y]: %f °\n", euler_angle[1]/16.0);
 	printf("Euler Angle [Z]: %f °\n", euler_angle[2]/16.0);
 	printf("Quaternion [W]: %f\n", quaternion[0]/16383.0);
@@ -49,7 +37,7 @@ void cb_all_data(int16_t acceleration[3], int16_t magnetic_field[3],
 	printf("Gravity Vector [X]: %f m/s²\n", gravity_vector[0]/100.0);
 	printf("Gravity Vector [Y]: %f m/s²\n", gravity_vector[1]/100.0);
 	printf("Gravity Vector [Z]: %f m/s²\n", gravity_vector[2]/100.0);
-	printf("Temperature: %d °C\n", temperature);*/
+	printf("Temperature: %d °C\n", temperature);
 	printf("Calibration Status: %u\n", calibration_status);
 	printf("\n");
 }
@@ -69,9 +57,7 @@ int main(void) {
 		return 1;
 	}
 	// Don't use device before ipcon is connected
-	imu_v2_set_sensor_fusion_mode(&imu,IMU_V2_SENSOR_FUSION_ON_WITHOUT_MAGNETOMETER);
-	//imu_v2_set_sensor_fusion_mode(&imu,IMU_V2_SENSOR_FUSION_OFF);
-	//imu_v2_set_sensor_fusion_mode(&imu,IMU_V2_SENSOR_FUSION_ON);
+
 	// Register all data callback to function cb_all_data
 	imu_v2_register_callback(&imu,
 	                         IMU_V2_CALLBACK_ALL_DATA,
@@ -79,8 +65,8 @@ int main(void) {
 	                         NULL);
 
 	// Set period for all data callback to 0.1s (100ms)
-	imu_v2_set_all_data_period(&imu, 50);
-	
+	imu_v2_set_all_data_period(&imu, 100);
+
 	printf("Press key to exit\n");
 	getchar();
 	imu_v2_destroy(&imu);

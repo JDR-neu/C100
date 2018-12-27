@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-02-28.      *
+ * This file was automatically generated on 2018-11-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.19                             *
+ * C/C++ Bindings Version 2.1.23                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -436,7 +436,7 @@ int rs232_is_read_callback_enabled(RS232 *rs232, bool *ret_enabled);
  * * Parity of none, odd, even or forced parity.
  * * Stopbits can be 1 or 2.
  * * Word length of 5 to 8.
- * * Hard-/Software flow control can each be on or off.
+ * * Hard-/Software flow control can either be on or off but not both simultaneously on.
  * 
  * The default is: 115200 baud, parity none, 1 stop bit, word length 8, hard-/software flow control off.
  */

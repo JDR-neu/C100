@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-02-28.      *
+ * This file was automatically generated on 2018-11-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.19                             *
+ * C/C++ Bindings Version 2.1.23                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -24,7 +24,7 @@ extern "C" {
 /**
  * \ingroup BrickletSolidStateRelayV2
  *
- * 
+ * Controls AC and DC Solid State Relays
  */
 typedef Device SolidStateRelayV2;
 
@@ -344,9 +344,9 @@ int solid_state_relay_v2_get_monoflop(SolidStateRelayV2 *solid_state_relay_v2, b
  * 
  * The errors are divided into
  * 
- * * ack checksum errors,
+ * * ACK checksum errors,
  * * message checksum errors,
- * * frameing errors and
+ * * framing errors and
  * * overflow errors.
  * 
  * The errors counts are for errors that occur on the Bricklet side. All
@@ -362,7 +362,7 @@ int solid_state_relay_v2_get_spitfp_error_count(SolidStateRelayV2 *solid_state_r
  * 
  * You can change from bootloader mode to firmware mode and vice versa. A change
  * from bootloader mode to firmware mode will only take place if the entry function,
- * device identifier und crc are present and correct.
+ * device identifier and CRC are present and correct.
  * 
  * This function is used by Brick Viewer during flashing. It should not be
  * necessary to call it in a normal user program.
