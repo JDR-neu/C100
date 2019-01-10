@@ -9,6 +9,5 @@
   <include file="$(find ir100_navigation)/launch/amcl.launch"/>
 
   <!-- move_base -->
-  <include file="$(find ir100_navigation)/launch/move_base.launch">
-  </include>
+  <include file="$(find ir100_navigation)/launch/move_base.launch"/>
 </launch>
