@@ -12,25 +12,23 @@ ir100_velocity_controller:
   cmd_vel_timeout: 0.25
 
   base_frame_id: base_link
-  enable_odom_tf: false
+  enable_odom_tf: true
   estimate_velocity_from_position: false
 
-  # max rotate speed: 1.7715, (3500/(15*60))*2*3.1415926*0.0725
-  wheel_separation: 0.458
-  #wheel_radius: 0.0725
-  wheel_radius: 0.0625
+  wheel_separation: 0.336
+  wheel_radius: 0.062
   wheel_separation_multiplier: 1.0
   wheel_radius_multiplier: 1.0 
 
   linear:
     x:
       has_velocity_limits    : true
-      max_velocity           : 1.5 
+      max_velocity           : 2.0 
       has_acceleration_limits: true
-      max_acceleration       : 1.5  
+      max_acceleration       : 2.0  
   angular:
     z:
       has_velocity_limits    : true
-      max_velocity           : 3.0  
+      max_velocity           : 4.0  
       has_acceleration_limits: true
-      max_acceleration       : 3.0   
+      max_acceleration       : 4.0   
