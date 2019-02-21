@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-11-28.      *
+ * This file was automatically generated on 2018-02-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.23                             *
+ * C/C++ Bindings Version 2.1.19                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -134,9 +134,9 @@ typedef Device TemperatureIRV2;
  * Signature: \code void callback(int16_t temperature, void *user_data) \endcode
  * 
  * This callback is triggered periodically according to the configuration set by
- * {@link temperature_ir_v2_set_ambient_temperature_callback_configuration}.
+ * {@link temperature_ir_v2_set_ambient_temperature_callback_configuration}. 
  * 
- * The parameter is the same as {@link temperature_ir_v2_get_ambient_temperature}.
+ * The `parameter` is the same as {@link temperature_ir_v2_get_ambient_temperature}.
  */
 #define TEMPERATURE_IR_V2_CALLBACK_AMBIENT_TEMPERATURE 4
 
@@ -146,9 +146,9 @@ typedef Device TemperatureIRV2;
  * Signature: \code void callback(int16_t temperature, void *user_data) \endcode
  * 
  * This callback is triggered periodically according to the configuration set by
- * {@link temperature_ir_v2_set_object_temperature_callback_configuration}.
+ * {@link temperature_ir_v2_set_object_temperature_callback_configuration}. 
  * 
- * The parameter is the same as {@link temperature_ir_v2_get_object_temperature}.
+ * The `parameter` is the same as {@link temperature_ir_v2_get_object_temperature}.
  */
 #define TEMPERATURE_IR_V2_CALLBACK_OBJECT_TEMPERATURE 8
 
@@ -391,23 +391,24 @@ int temperature_ir_v2_get_ambient_temperature(TemperatureIRV2 *temperature_ir_v2
  * 
  *  "'x'",    "Threshold is turned off"
  *  "'o'",    "Threshold is triggered when the value is *outside* the min and max values"
- *  "'i'",    "Threshold is triggered when the value is *inside* or equal to the min and max values"
+ *  "'i'",    "Threshold is triggered when the value is *inside* the min and max values"
  *  "'<'",    "Threshold is triggered when the value is smaller than the min value (max is ignored)"
  *  "'>'",    "Threshold is triggered when the value is greater than the min value (max is ignored)"
  * \endverbatim
+ * 
  * 
  * If the option is set to 'x' (threshold turned off) the callback is triggered with the fixed period.
  * 
  * The default value is (0, false, 'x', 0, 0).
  */
-int temperature_ir_v2_set_ambient_temperature_callback_configuration(TemperatureIRV2 *temperature_ir_v2, uint32_t period, bool value_has_to_change, char option, int16_t min, int16_t max);
+int temperature_ir_v2_set_ambient_temperature_callback_configuration(TemperatureIRV2 *temperature_ir_v2, uint32_t period, bool value_has_to_change, char option, uint16_t min, uint16_t max);
 
 /**
  * \ingroup BrickletTemperatureIRV2
  *
  * Returns the callback configuration as set by {@link temperature_ir_v2_set_ambient_temperature_callback_configuration}.
  */
-int temperature_ir_v2_get_ambient_temperature_callback_configuration(TemperatureIRV2 *temperature_ir_v2, uint32_t *ret_period, bool *ret_value_has_to_change, char *ret_option, int16_t *ret_min, int16_t *ret_max);
+int temperature_ir_v2_get_ambient_temperature_callback_configuration(TemperatureIRV2 *temperature_ir_v2, uint32_t *ret_period, bool *ret_value_has_to_change, char *ret_option, uint16_t *ret_min, uint16_t *ret_max);
 
 /**
  * \ingroup BrickletTemperatureIRV2
@@ -457,23 +458,24 @@ int temperature_ir_v2_get_object_temperature(TemperatureIRV2 *temperature_ir_v2,
  * 
  *  "'x'",    "Threshold is turned off"
  *  "'o'",    "Threshold is triggered when the value is *outside* the min and max values"
- *  "'i'",    "Threshold is triggered when the value is *inside* or equal to the min and max values"
+ *  "'i'",    "Threshold is triggered when the value is *inside* the min and max values"
  *  "'<'",    "Threshold is triggered when the value is smaller than the min value (max is ignored)"
  *  "'>'",    "Threshold is triggered when the value is greater than the min value (max is ignored)"
  * \endverbatim
+ * 
  * 
  * If the option is set to 'x' (threshold turned off) the callback is triggered with the fixed period.
  * 
  * The default value is (0, false, 'x', 0, 0).
  */
-int temperature_ir_v2_set_object_temperature_callback_configuration(TemperatureIRV2 *temperature_ir_v2, uint32_t period, bool value_has_to_change, char option, int16_t min, int16_t max);
+int temperature_ir_v2_set_object_temperature_callback_configuration(TemperatureIRV2 *temperature_ir_v2, uint32_t period, bool value_has_to_change, char option, uint16_t min, uint16_t max);
 
 /**
  * \ingroup BrickletTemperatureIRV2
  *
  * Returns the callback configuration as set by {@link temperature_ir_v2_set_object_temperature_callback_configuration}.
  */
-int temperature_ir_v2_get_object_temperature_callback_configuration(TemperatureIRV2 *temperature_ir_v2, uint32_t *ret_period, bool *ret_value_has_to_change, char *ret_option, int16_t *ret_min, int16_t *ret_max);
+int temperature_ir_v2_get_object_temperature_callback_configuration(TemperatureIRV2 *temperature_ir_v2, uint32_t *ret_period, bool *ret_value_has_to_change, char *ret_option, uint16_t *ret_min, uint16_t *ret_max);
 
 /**
  * \ingroup BrickletTemperatureIRV2
@@ -513,9 +515,9 @@ int temperature_ir_v2_get_emissivity(TemperatureIRV2 *temperature_ir_v2, uint16_
  * 
  * The errors are divided into
  * 
- * * ACK checksum errors,
+ * * ack checksum errors,
  * * message checksum errors,
- * * framing errors and
+ * * frameing errors and
  * * overflow errors.
  * 
  * The errors counts are for errors that occur on the Bricklet side. All
@@ -531,7 +533,7 @@ int temperature_ir_v2_get_spitfp_error_count(TemperatureIRV2 *temperature_ir_v2,
  * 
  * You can change from bootloader mode to firmware mode and vice versa. A change
  * from bootloader mode to firmware mode will only take place if the entry function,
- * device identifier and CRC are present and correct.
+ * device identifier und crc are present and correct.
  * 
  * This function is used by Brick Viewer during flashing. It should not be
  * necessary to call it in a normal user program.

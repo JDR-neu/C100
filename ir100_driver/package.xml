@@ -6,8 +6,10 @@
 
   <author email="shansu@sensorobots.net">shansu</author>
   <maintainer email="shansu@sensorobots.net">shansu</maintainer>
+
   <license>BSD</license>
-  <url type="repository">https://github.com/ShanSuIntelligent</url>
+
+  <url type="website">http://ros.org/wiki</url>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>controller_manager</build_depend>

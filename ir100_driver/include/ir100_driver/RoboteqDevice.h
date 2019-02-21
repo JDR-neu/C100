@@ -1,8 +1,3 @@
-/*
- *  Created on: Jan 1, 2018
- *      Author: shansu
- *   Copyright: 2018 Shanghai Yikun Electrical Engineering Co，Ltd
- */
 #ifndef __RoboteqDevice_H_
 #define __RoboteqDevice_H_
 

@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-11-28.      *
+ * This file was automatically generated on 2018-02-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.23                             *
+ * C/C++ Bindings Version 2.1.19                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -624,7 +624,7 @@ static void silent_stepper_callback_wrapper_new_state(DevicePrivate *device_p, P
 void silent_stepper_create(SilentStepper *silent_stepper, const char *uid, IPConnection *ipcon) {
 	DevicePrivate *device_p;
 
-	device_create(silent_stepper, uid, ipcon->p, 2, 0, 1);
+	device_create(silent_stepper, uid, ipcon->p, 2, 0, 0);
 
 	device_p = silent_stepper->p;
 

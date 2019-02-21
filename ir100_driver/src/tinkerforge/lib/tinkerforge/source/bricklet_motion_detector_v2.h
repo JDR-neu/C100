@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-11-28.      *
+ * This file was automatically generated on 2018-02-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.23                             *
+ * C/C++ Bindings Version 2.1.19                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -330,7 +330,7 @@ int motion_detector_v2_get_motion_detected(MotionDetectorV2 *motion_detector_v2,
 /**
  * \ingroup BrickletMotionDetectorV2
  *
- * Sets the sensitivity of the PIR sensor. The range is 0-100. At full
+ * Sets the sensitivity of the PIR sensor. The range is 0-100. At full 
  * sensitivity (100), the Bricklet can detect motion in a range of approximately 12m.
  * 
  * The actual range depends on many things in the environment (e.g. reflections) and the
@@ -376,9 +376,9 @@ int motion_detector_v2_get_indicator(MotionDetectorV2 *motion_detector_v2, uint8
  * 
  * The errors are divided into
  * 
- * * ACK checksum errors,
+ * * ack checksum errors,
  * * message checksum errors,
- * * framing errors and
+ * * frameing errors and
  * * overflow errors.
  * 
  * The errors counts are for errors that occur on the Bricklet side. All
@@ -394,7 +394,7 @@ int motion_detector_v2_get_spitfp_error_count(MotionDetectorV2 *motion_detector_
  * 
  * You can change from bootloader mode to firmware mode and vice versa. A change
  * from bootloader mode to firmware mode will only take place if the entry function,
- * device identifier and CRC are present and correct.
+ * device identifier und crc are present and correct.
  * 
  * This function is used by Brick Viewer during flashing. It should not be
  * necessary to call it in a normal user program.

@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-11-28.      *
+ * This file was automatically generated on 2018-02-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.23                             *
+ * C/C++ Bindings Version 2.1.19                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -883,7 +883,7 @@ int imu_is_orientation_calculation_on(IMU *imu, bool *ret_orientation_calculatio
  * enabled, the Brick will try to adapt the baudrate for the communication
  * between Bricks and Bricklets according to the amount of data that is transferred.
  * 
- * The baudrate will be increased exponentially if lots of data is send/received and
+ * The baudrate will be increased exponetially if lots of data is send/receieved and
  * decreased linearly if little data is send/received.
  * 
  * This lowers the baudrate in applications where little data is transferred (e.g.
@@ -894,7 +894,7 @@ int imu_is_orientation_calculation_on(IMU *imu, bool *ret_orientation_calculatio
  * (e.g. RS485 Bricklet with a high baudrate but small payload) you may want to turn
  * the dynamic baudrate off to get the highest possible performance.
  * 
- * The maximum value of the baudrate can be set per port with the function
+ * The maximum value of the baudrate can be set per port with the function 
  * {@link imu_set_spitfp_baudrate}. If the dynamic baudrate is disabled, the baudrate
  * as set by {@link imu_set_spitfp_baudrate} will be used statically.
  * 
@@ -943,7 +943,7 @@ int imu_get_send_timeout_count(IMU *imu, uint8_t communication_method, uint32_t 
  * If the dynamic baudrate feature is enabled, the baudrate set by this
  * function corresponds to the maximum baudrate (see {@link imu_set_spitfp_baudrate_config}).
  * 
- * Regulatory testing is done with the default baudrate. If CE compatibility
+ * Regulatory testing is done with the default baudrate. If CE compatability
  * or similar is necessary in you applications we recommend to not change
  * the baudrate.
  * 
@@ -971,7 +971,7 @@ int imu_get_spitfp_baudrate(IMU *imu, char bricklet_port, uint32_t *ret_baudrate
  * 
  * * ACK checksum errors,
  * * message checksum errors,
- * * framing errors and
+ * * frameing errors and
  * * overflow errors.
  * 
  * The errors counts are for errors that occur on the Brick side. All

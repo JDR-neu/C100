@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-11-28.      *
+ * This file was automatically generated on 2018-02-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.23                             *
+ * C/C++ Bindings Version 2.1.19                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -134,9 +134,9 @@ typedef Device MotorizedLinearPoti;
  * Signature: \code void callback(uint16_t position, void *user_data) \endcode
  * 
  * This callback is triggered periodically according to the configuration set by
- * {@link motorized_linear_poti_set_position_callback_configuration}.
+ * {@link motorized_linear_poti_set_position_callback_configuration}. 
  * 
- * The parameter is the same as {@link motorized_linear_poti_get_position}.
+ * The `parameter` is the same as {@link motorized_linear_poti_get_position}.
  */
 #define MOTORIZED_LINEAR_POTI_CALLBACK_POSITION 4
 
@@ -395,10 +395,11 @@ int motorized_linear_poti_get_position(MotorizedLinearPoti *motorized_linear_pot
  * 
  *  "'x'",    "Threshold is turned off"
  *  "'o'",    "Threshold is triggered when the value is *outside* the min and max values"
- *  "'i'",    "Threshold is triggered when the value is *inside* or equal to the min and max values"
+ *  "'i'",    "Threshold is triggered when the value is *inside* the min and max values"
  *  "'<'",    "Threshold is triggered when the value is smaller than the min value (max is ignored)"
  *  "'>'",    "Threshold is triggered when the value is greater than the min value (max is ignored)"
  * \endverbatim
+ * 
  * 
  * If the option is set to 'x' (threshold turned off) the callback is triggered with the fixed period.
  * 
@@ -481,9 +482,9 @@ int motorized_linear_poti_get_position_reached_callback_configuration(MotorizedL
  * 
  * The errors are divided into
  * 
- * * ACK checksum errors,
+ * * ack checksum errors,
  * * message checksum errors,
- * * framing errors and
+ * * frameing errors and
  * * overflow errors.
  * 
  * The errors counts are for errors that occur on the Bricklet side. All
@@ -499,7 +500,7 @@ int motorized_linear_poti_get_spitfp_error_count(MotorizedLinearPoti *motorized_
  * 
  * You can change from bootloader mode to firmware mode and vice versa. A change
  * from bootloader mode to firmware mode will only take place if the entry function,
- * device identifier and CRC are present and correct.
+ * device identifier und crc are present and correct.
  * 
  * This function is used by Brick Viewer during flashing. It should not be
  * necessary to call it in a normal user program.

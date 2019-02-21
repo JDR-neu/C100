@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-11-28.      *
+ * This file was automatically generated on 2018-02-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.23                             *
+ * C/C++ Bindings Version 2.1.19                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -24,7 +24,7 @@ extern "C" {
 /**
  * \ingroup BrickletOLED64x48
  *
- * 1.68cm (0.66") OLED display with 64x48 pixels
+ * 1.68cm (0.66") OLED with 64x48 pixels
  */
 typedef Device OLED64x48;
 

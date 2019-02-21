@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-11-28.      *
+ * This file was automatically generated on 2018-02-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.23                             *
+ * C/C++ Bindings Version 2.1.19                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -2655,7 +2655,7 @@ int rs485_get_identity(RS485 *rs485, char ret_uid[8], char ret_connected_uid[8],
 	return ret;
 }
 
-int rs485_write(RS485 *rs485, const char *message, uint16_t message_length, uint16_t *ret_message_written) {
+int rs485_write(RS485 *rs485, char *message, uint16_t message_length, uint16_t *ret_message_written) {
 	DevicePrivate *device_p = rs485->p;
 	int ret;
 	uint16_t message_chunk_offset = 0;

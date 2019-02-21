@@ -1,8 +1,3 @@
-/*
- *  Created on: Jan 1, 2018
- *      Author: shansu
- *   Copyright: 2018 Shanghai Yikun Electrical Engineering Co，Ltd
- */
 #ifndef __MOTORCONTROLLER_H_
 #define __MOTORCONTROLLER_H_
 

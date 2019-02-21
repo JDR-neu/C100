@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-11-28.      *
+ * This file was automatically generated on 2018-02-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.23                             *
+ * C/C++ Bindings Version 2.1.19                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -698,7 +698,7 @@ static void imu_v2_callback_wrapper_all_data(DevicePrivate *device_p, Packet *pa
 void imu_v2_create(IMUV2 *imu_v2, const char *uid, IPConnection *ipcon) {
 	DevicePrivate *device_p;
 
-	device_create(imu_v2, uid, ipcon->p, 2, 0, 3);
+	device_create(imu_v2, uid, ipcon->p, 2, 0, 1);
 
 	device_p = imu_v2->p;
 

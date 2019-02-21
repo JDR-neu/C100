@@ -1,8 +1,3 @@
-/*
- *  Created on: Jan 1, 2018
- *      Author: shansu
- *   Copyright: 2018 Shanghai Yikun Electrical Engineering Co，Ltd
- */
 #include "sonar.h"
 #include "std_msgs/UInt16.h"
 
@@ -13,8 +8,8 @@ int main(int argc,char* argv[])
   ros::NodeHandle nh;
   ros::NodeHandle private_nh;
   std::string left_uid,right_uid;
-  private_nh.param("left_uid",left_uid,std::string("Efi"));
-  private_nh.param("right_uid",right_uid,std::string("DYZ"));
+  private_nh.param("left_uid",left_uid,std::string("DZr"));
+  private_nh.param("right_uid",right_uid,std::string("Eg8"));
 
   Sonar left("192.168.99.30","4223",left_uid);
   Sonar right("192.168.99.30","4223",right_uid);
@@ -24,18 +19,12 @@ int main(int argc,char* argv[])
   left.connect();
   right.connect();
   while(nh.ok()) {
-    uint16_t distance;
     std_msgs::UInt16 msg_left,msg_right;
-    left.getDistance(distance);
-    msg_left.data = distance;
+    left.getDistance(msg_left.data);
     left_pub.publish(msg_left);
-    ros::Duration(0.1).sleep();
-    //std::cout<<distance<<std::endl;
-    right.getDistance(distance);
-    //std::cout<<distance<<std::endl;
-    msg_right.data = distance;
+    right.getDistance(msg_left.data);
     right_pub.publish(msg_right);
-    ros::Duration(0.1).sleep();
+    ros::Duration(1.0).sleep();
   }
   return 0;
 }

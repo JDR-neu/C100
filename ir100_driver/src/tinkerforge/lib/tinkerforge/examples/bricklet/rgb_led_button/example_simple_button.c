@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+// FIXME: This example is incomplete
+
 #include "ip_connection.h"
 #include "bricklet_rgb_led_button.h"
 
@@ -30,11 +32,7 @@ int main(void) {
 		return 1;
 	}
 
-	if(state == RGB_LED_BUTTON_BUTTON_STATE_PRESSED) {
-		printf("State: Pressed\n");
-	} else if(state == RGB_LED_BUTTON_BUTTON_STATE_RELEASED) {
-		printf("State: Released\n");
-	}
+	printf("State: %u\n", state);
 
 	printf("Press key to exit\n");
 	getchar();

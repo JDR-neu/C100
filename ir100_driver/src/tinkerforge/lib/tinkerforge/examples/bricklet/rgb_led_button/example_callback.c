@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+// FIXME: This example is incomplete
+
 #include "ip_connection.h"
 #include "bricklet_rgb_led_button.h"
 
@@ -11,11 +13,7 @@
 void cb_button_state_changed(uint8_t state, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
-	if(state == RGB_LED_BUTTON_BUTTON_STATE_PRESSED) {
-		printf("State: Pressed\n");
-	} else if(state == RGB_LED_BUTTON_BUTTON_STATE_RELEASED) {
-		printf("State: Released\n");
-	}
+	printf("State: %u\n", state);
 }
 
 int main(void) {

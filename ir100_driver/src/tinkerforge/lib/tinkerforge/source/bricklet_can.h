@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-11-28.      *
+ * This file was automatically generated on 2018-02-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.23                             *
+ * C/C++ Bindings Version 2.1.19                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -383,7 +383,7 @@ int can_is_frame_read_callback_enabled(CAN *can, bool *ret_enabled);
  * 
  * The CAN transceiver has three different modes:
  * 
- * * Normal: Reads from and writes to the CAN bus and performs active bus
+ * * Normal: Reads from and writes and to the CAN bus and performs active bus
  *   error detection and acknowledgement.
  * * Loopback: All reads and writes are performed internally. The transceiver
  *   is disconnected from the actual CAN bus.

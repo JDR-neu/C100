@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-11-28.      *
+ * This file was automatically generated on 2018-02-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.23                             *
+ * C/C++ Bindings Version 2.1.19                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -782,7 +782,7 @@ int gps_v2_get_date_time_callback_period(GPSV2 *gps_v2, uint32_t *ret_period);
 /**
  * \ingroup BrickletGPSV2
  *
- * If `SBAS <https://en.wikipedia.org/wiki/GNSS_augmentation#Satellite-based_augmentation_system>`__ is enabled,
+ * If `SBAS <https://en.wikipedia.org/wiki/GNSS_augmentation#Satellite-based_augmentation_system>`__ is enabled, 
  * the position accuracy increases (if SBAS satellites are in view),
  * but the update rate is limited to 5Hz. With SBAS disabled the update rate is increased to 10Hz.
  * 
@@ -808,9 +808,9 @@ int gps_v2_get_sbas_config(GPSV2 *gps_v2, uint8_t *ret_sbas_config);
  * 
  * The errors are divided into
  * 
- * * ACK checksum errors,
+ * * ack checksum errors,
  * * message checksum errors,
- * * framing errors and
+ * * frameing errors and
  * * overflow errors.
  * 
  * The errors counts are for errors that occur on the Bricklet side. All
@@ -826,7 +826,7 @@ int gps_v2_get_spitfp_error_count(GPSV2 *gps_v2, uint32_t *ret_error_count_ack_c
  * 
  * You can change from bootloader mode to firmware mode and vice versa. A change
  * from bootloader mode to firmware mode will only take place if the entry function,
- * device identifier and CRC are present and correct.
+ * device identifier und crc are present and correct.
  * 
  * This function is used by Brick Viewer during flashing. It should not be
  * necessary to call it in a normal user program.

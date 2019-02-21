@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-11-28.      *
+ * This file was automatically generated on 2018-02-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.23                             *
+ * C/C++ Bindings Version 2.1.19                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -975,16 +975,16 @@ int silent_stepper_is_enabled(SilentStepper *silent_stepper, bool *ret_enabled);
  * Sets the basic configuration parameters for the different modes (Stealth, Coolstep, Classic).
  * 
  * * Standstill Current: This value can be used to lower the current during stand still. This might
- *   be reasonable to reduce the heating of the motor and the Brick. When the motor is in standstill
- *   the configured motor phase current will be driven until the configured
- *   Power Down Time is elapsed. After that the phase current will be reduced to the standstill
+ *   be reasonable to reduce the heating of the motor and the Brick. When the motor is in standstill 
+ *   the configured motor phase current will be driven until the configured 
+ *   Power Down Time is elapsed. After that the phase current will be reduced to the standstill 
  *   current. The elapsed time for this reduction can be configured with the Standstill Delay Time.
  *   The unit is in mA and the maximum allowed value is the configured maximum motor current
  *   (see {@link silent_stepper_set_motor_current}).
  * 
- * * Motor Run Current: The value sets the motor current when the motor is running.
- *   Use a value of at least one half of the global maximum motor current for a good
- *   microstep performance. The unit is in mA and the maximum allowed value is the current
+ * * Motor Run Current: The value sets the motor current when the motor is running. 
+ *   Use a value of at least one half of the global maximum motor current for a good 
+ *   microstep performance. The unit is in mA and the maximum allowed value is the current 
  *   motor current. The API maps the entered value to 1/32 ... 32/32 of the maximum
  *   motor current. This value should be used to change the motor current during motor movement,
  *   whereas the global maximum motor current should not be changed while the motor is moving
@@ -1241,7 +1241,7 @@ int silent_stepper_get_misc_configuration(SilentStepper *silent_stepper, bool *r
  * 
  * * Motor Stalled: Is true if a motor stall was detected.
  * 
- * * Actual Motor Current: Indicates the actual current control scaling as used in Coolstep mode.
+ * * Actual Motor Current: Indicates the actual current control scaling as used in Coolstep mode. 
  *   The returned value is between 0 and 31. It represents a multiplier of 1/32 to 32/32 of the
  *   ``Motor Run Current`` as set by {@link silent_stepper_set_basic_configuration}. Example: If a ``Motor Run Current``
  *   of 1000mA was set and the returned value is 15, the ``Actual Motor Current`` is 16/32*1000mA = 500mA.
@@ -1340,7 +1340,7 @@ int silent_stepper_get_all_data_period(SilentStepper *silent_stepper, uint32_t *
  * enabled, the Brick will try to adapt the baudrate for the communication
  * between Bricks and Bricklets according to the amount of data that is transferred.
  * 
- * The baudrate will be increased exponentially if lots of data is send/received and
+ * The baudrate will be increased exponetially if lots of data is send/receieved and
  * decreased linearly if little data is send/received.
  * 
  * This lowers the baudrate in applications where little data is transferred (e.g.
@@ -1351,7 +1351,7 @@ int silent_stepper_get_all_data_period(SilentStepper *silent_stepper, uint32_t *
  * (e.g. RS485 Bricklet with a high baudrate but small payload) you may want to turn
  * the dynamic baudrate off to get the highest possible performance.
  * 
- * The maximum value of the baudrate can be set per port with the function
+ * The maximum value of the baudrate can be set per port with the function 
  * {@link silent_stepper_set_spitfp_baudrate}. If the dynamic baudrate is disabled, the baudrate
  * as set by {@link silent_stepper_set_spitfp_baudrate} will be used statically.
  * 
@@ -1398,7 +1398,7 @@ int silent_stepper_get_send_timeout_count(SilentStepper *silent_stepper, uint8_t
  * If the dynamic baudrate feature is enabled, the baudrate set by this
  * function corresponds to the maximum baudrate (see {@link silent_stepper_set_spitfp_baudrate_config}).
  * 
- * Regulatory testing is done with the default baudrate. If CE compatibility
+ * Regulatory testing is done with the default baudrate. If CE compatability
  * or similar is necessary in you applications we recommend to not change
  * the baudrate.
  * 
@@ -1422,7 +1422,7 @@ int silent_stepper_get_spitfp_baudrate(SilentStepper *silent_stepper, char brick
  * 
  * * ACK checksum errors,
  * * message checksum errors,
- * * framing errors and
+ * * frameing errors and
  * * overflow errors.
  * 
  * The errors counts are for errors that occur on the Brick side. All

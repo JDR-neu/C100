@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-11-28.      *
+ * This file was automatically generated on 2018-02-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.23                             *
+ * C/C++ Bindings Version 2.1.19                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -81,16 +81,6 @@ typedef Device HumidityV2;
 /**
  * \ingroup BrickletHumidityV2
  */
-#define HUMIDITY_V2_FUNCTION_SET_SAMPLES_PER_SECOND 13
-
-/**
- * \ingroup BrickletHumidityV2
- */
-#define HUMIDITY_V2_FUNCTION_GET_SAMPLES_PER_SECOND 14
-
-/**
- * \ingroup BrickletHumidityV2
- */
 #define HUMIDITY_V2_FUNCTION_GET_SPITFP_ERROR_COUNT 234
 
 /**
@@ -154,9 +144,9 @@ typedef Device HumidityV2;
  * Signature: \code void callback(uint16_t humidity, void *user_data) \endcode
  * 
  * This callback is triggered periodically according to the configuration set by
- * {@link humidity_v2_set_humidity_callback_configuration}.
+ * {@link humidity_v2_set_humidity_callback_configuration}. 
  * 
- * The parameter is the same as {@link humidity_v2_get_humidity}.
+ * The `parameter` is the same as {@link humidity_v2_get_humidity}.
  */
 #define HUMIDITY_V2_CALLBACK_HUMIDITY 4
 
@@ -166,9 +156,9 @@ typedef Device HumidityV2;
  * Signature: \code void callback(int16_t temperature, void *user_data) \endcode
  * 
  * This callback is triggered periodically according to the configuration set by
- * {@link humidity_v2_set_temperature_callback_configuration}.
+ * {@link humidity_v2_set_temperature_callback_configuration}. 
  * 
- * The parameter is the same as {@link humidity_v2_get_temperature}.
+ * The `parameter` is the same as {@link humidity_v2_get_temperature}.
  */
 #define HUMIDITY_V2_CALLBACK_TEMPERATURE 8
 
@@ -207,36 +197,6 @@ typedef Device HumidityV2;
  * \ingroup BrickletHumidityV2
  */
 #define HUMIDITY_V2_HEATER_CONFIG_ENABLED 1
-
-/**
- * \ingroup BrickletHumidityV2
- */
-#define HUMIDITY_V2_SPS_20 0
-
-/**
- * \ingroup BrickletHumidityV2
- */
-#define HUMIDITY_V2_SPS_10 1
-
-/**
- * \ingroup BrickletHumidityV2
- */
-#define HUMIDITY_V2_SPS_5 2
-
-/**
- * \ingroup BrickletHumidityV2
- */
-#define HUMIDITY_V2_SPS_1 3
-
-/**
- * \ingroup BrickletHumidityV2
- */
-#define HUMIDITY_V2_SPS_02 4
-
-/**
- * \ingroup BrickletHumidityV2
- */
-#define HUMIDITY_V2_SPS_01 5
 
 /**
  * \ingroup BrickletHumidityV2
@@ -446,10 +406,11 @@ int humidity_v2_get_humidity(HumidityV2 *humidity_v2, uint16_t *ret_humidity);
  * 
  *  "'x'",    "Threshold is turned off"
  *  "'o'",    "Threshold is triggered when the value is *outside* the min and max values"
- *  "'i'",    "Threshold is triggered when the value is *inside* or equal to the min and max values"
+ *  "'i'",    "Threshold is triggered when the value is *inside* the min and max values"
  *  "'<'",    "Threshold is triggered when the value is smaller than the min value (max is ignored)"
  *  "'>'",    "Threshold is triggered when the value is greater than the min value (max is ignored)"
  * \endverbatim
+ * 
  * 
  * If the option is set to 'x' (threshold turned off) the callback is triggered with the fixed period.
  * 
@@ -502,23 +463,24 @@ int humidity_v2_get_temperature(HumidityV2 *humidity_v2, int16_t *ret_temperatur
  * 
  *  "'x'",    "Threshold is turned off"
  *  "'o'",    "Threshold is triggered when the value is *outside* the min and max values"
- *  "'i'",    "Threshold is triggered when the value is *inside* or equal to the min and max values"
+ *  "'i'",    "Threshold is triggered when the value is *inside* the min and max values"
  *  "'<'",    "Threshold is triggered when the value is smaller than the min value (max is ignored)"
  *  "'>'",    "Threshold is triggered when the value is greater than the min value (max is ignored)"
  * \endverbatim
+ * 
  * 
  * If the option is set to 'x' (threshold turned off) the callback is triggered with the fixed period.
  * 
  * The default value is (0, false, 'x', 0, 0).
  */
-int humidity_v2_set_temperature_callback_configuration(HumidityV2 *humidity_v2, uint32_t period, bool value_has_to_change, char option, int16_t min, int16_t max);
+int humidity_v2_set_temperature_callback_configuration(HumidityV2 *humidity_v2, uint32_t period, bool value_has_to_change, char option, uint16_t min, uint16_t max);
 
 /**
  * \ingroup BrickletHumidityV2
  *
  * Returns the callback configuration as set by {@link humidity_v2_set_temperature_callback_configuration}.
  */
-int humidity_v2_get_temperature_callback_configuration(HumidityV2 *humidity_v2, uint32_t *ret_period, bool *ret_value_has_to_change, char *ret_option, int16_t *ret_min, int16_t *ret_max);
+int humidity_v2_get_temperature_callback_configuration(HumidityV2 *humidity_v2, uint32_t *ret_period, bool *ret_value_has_to_change, char *ret_option, uint16_t *ret_min, uint16_t *ret_max);
 
 /**
  * \ingroup BrickletHumidityV2
@@ -548,16 +510,11 @@ int humidity_v2_get_heater_configuration(HumidityV2 *humidity_v2, uint8_t *ret_h
  * 
  * The range for the averaging is 1-1000.
  * 
- * New data is gathered every 50ms*. With a moving average of length 1000 the resulting
+ * New data is gathered every 50ms. With a moving average of length 1000 the resulting
  * averaging window has a length of 50s. If you want to do long term measurements the longest
  * moving average will give the cleanest results.
  * 
- * The default value is 5.
- * 
- * \* In firmware version 2.0.3 we added the {@link humidity_v2_set_samples_per_second} function. It
- * configures the measurement frequency. Since high frequencies can result in self-heating
- * of th IC, changed the default value from 20 samples per second to 1. With 1 sample per second
- * a moving average length of 1000 would result in an averaging window of 1000 seconds!
+ * The default value is 100.
  */
 int humidity_v2_set_moving_average_configuration(HumidityV2 *humidity_v2, uint16_t moving_average_length_humidity, uint16_t moving_average_length_temperature);
 
@@ -571,39 +528,13 @@ int humidity_v2_get_moving_average_configuration(HumidityV2 *humidity_v2, uint16
 /**
  * \ingroup BrickletHumidityV2
  *
- * Sets the samples per second that are gathered by the humidity/temperature sensor HDC1080.
- * 
- * We added this function since we found out that a high measurement frequency can lead to
- * self-heating of the sensor. Which can distort the temperature measurement. 
- * 
- * If you don't need a lot of measurements, you can use the lowest available measurement
- * frequency of 0.1 samples per second for the least amount of self-heating.
- * 
- * Before version 2.0.3 the default was 20 samples per second. The new default is 1 sample per second.
- * 
- * .. versionadded:: 2.0.3$nbsp;(Plugin)
- */
-int humidity_v2_set_samples_per_second(HumidityV2 *humidity_v2, uint8_t sps);
-
-/**
- * \ingroup BrickletHumidityV2
- *
- * Returnes the samples per second, as set by {@link humidity_v2_set_samples_per_second}.
- * 
- * .. versionadded:: 2.0.3$nbsp;(Plugin)
- */
-int humidity_v2_get_samples_per_second(HumidityV2 *humidity_v2, uint8_t *ret_sps);
-
-/**
- * \ingroup BrickletHumidityV2
- *
  * Returns the error count for the communication between Brick and Bricklet.
  * 
  * The errors are divided into
  * 
- * * ACK checksum errors,
+ * * ack checksum errors,
  * * message checksum errors,
- * * framing errors and
+ * * frameing errors and
  * * overflow errors.
  * 
  * The errors counts are for errors that occur on the Bricklet side. All
@@ -619,7 +550,7 @@ int humidity_v2_get_spitfp_error_count(HumidityV2 *humidity_v2, uint32_t *ret_er
  * 
  * You can change from bootloader mode to firmware mode and vice versa. A change
  * from bootloader mode to firmware mode will only take place if the entry function,
- * device identifier and CRC are present and correct.
+ * device identifier und crc are present and correct.
  * 
  * This function is used by Brick Viewer during flashing. It should not be
  * necessary to call it in a normal user program.

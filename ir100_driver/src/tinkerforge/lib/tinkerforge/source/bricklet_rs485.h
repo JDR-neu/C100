@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-11-28.      *
+ * This file was automatically generated on 2018-02-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.23                             *
+ * C/C++ Bindings Version 2.1.19                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -1159,8 +1159,8 @@ int rs485_get_mode(RS485 *rs485, uint8_t *ret_mode);
 /**
  * \ingroup BrickletRS485
  *
- * Sets the communication LED configuration. By default the LED shows RS485
- * communication traffic by flickering.
+ * Sets the communication LED configuration. By default the LED shows
+ * communication traffic, it flickers once for every 10 received data packets.
  * 
  * You can also turn the LED permanently on/off or show a heartbeat.
  * 
@@ -1206,8 +1206,8 @@ int rs485_get_error_led_config(RS485 *rs485, uint8_t *ret_config);
  * 
  * The current buffer content is lost if this function is called.
  * 
- * The send buffer holds data that was given by {@link rs485_write} and
- * could not be written yet. The receive buffer holds data that is
+ * The send buffer holds data that is given by {@link rs485_write} and
+ * can not be written yet. The receive buffer holds data that is
  * received through RS485 but could not yet be send to the
  * user, either by {@link rs485_read} or through {@link RS485_CALLBACK_READ} callback.
  * 
@@ -1572,9 +1572,9 @@ int rs485_modbus_master_read_input_registers(RS485 *rs485, uint8_t slave_address
  * 
  * The errors are divided into
  * 
- * * ACK checksum errors,
+ * * ack checksum errors,
  * * message checksum errors,
- * * framing errors and
+ * * frameing errors and
  * * overflow errors.
  * 
  * The errors counts are for errors that occur on the Bricklet side. All
@@ -1590,7 +1590,7 @@ int rs485_get_spitfp_error_count(RS485 *rs485, uint32_t *ret_error_count_ack_che
  * 
  * You can change from bootloader mode to firmware mode and vice versa. A change
  * from bootloader mode to firmware mode will only take place if the entry function,
- * device identifier and CRC are present and correct.
+ * device identifier und crc are present and correct.
  * 
  * This function is used by Brick Viewer during flashing. It should not be
  * necessary to call it in a normal user program.
@@ -1718,7 +1718,7 @@ int rs485_get_identity(RS485 *rs485, char ret_uid[8], char ret_connected_uid[8],
  * See {@link rs485_set_rs485_configuration} for configuration possibilities
  * regarding baudrate, parity and so on.
  */
-int rs485_write(RS485 *rs485, const char *message, uint16_t message_length, uint16_t *ret_message_written);
+int rs485_write(RS485 *rs485, char *message, uint16_t message_length, uint16_t *ret_message_written);
 
 /**
  * \ingroup BrickletRS485

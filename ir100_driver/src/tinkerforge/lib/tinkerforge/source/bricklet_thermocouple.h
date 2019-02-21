@@ -1,7 +1,7 @@
 /* ***********************************************************
- * This file was automatically generated on 2018-11-28.      *
+ * This file was automatically generated on 2018-02-28.      *
  *                                                           *
- * C/C++ Bindings Version 2.1.23                             *
+ * C/C++ Bindings Version 2.1.19                             *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -117,7 +117,7 @@ typedef Device Thermocouple;
  * Signature: \code void callback(bool over_under, bool open_circuit, void *user_data) \endcode
  * 
  * This Callback is triggered every time the error state changes
- * (see {@link thermocouple_get_error_state}).
+ * (see func:`GetErrorStatus`).
  */
 #define THERMOCOUPLE_CALLBACK_ERROR_STATE 13
 
@@ -461,7 +461,7 @@ int thermocouple_get_configuration(Thermocouple *thermocouple, uint8_t *ret_aver
  * it is very likely that your thermocouple is defective. An Open Circuit error
  * indicates that there is no thermocouple connected.
  * 
- * You can use the {@link THERMOCOUPLE_CALLBACK_ERROR_STATE} callback to automatically get triggered
+ * You can use the func:`ErrorState` callback to automatically get triggered
  * when the error state changes.
  */
 int thermocouple_get_error_state(Thermocouple *thermocouple, bool *ret_over_under, bool *ret_open_circuit);
